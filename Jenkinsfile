@@ -2,32 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage ('Initialize') {
+        stage('Build') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                                   '''
+                echo 'Building..'
             }
         }
-
-        stage ('Build') {
+        stage('Test') {
             steps {
-                dir("/home/ubuntu/Jenkins/CICD/recipes/") {
-                sh 'mvn -Dmaven.test.failure.ignore=true -U clean install'
-                }
-               
+                echo 'Testing..'
             }
         }
-       
- stage ('Deploy') {
+        stage('Deploy') {
             steps {
-                dir("/home/ubuntu/Jenkins/CICD/recipes/") {
-                sh 'mvn spring-boot:run'
-                }
-               
+                echo 'Deploying....'
             }
-}
-       
+        }
     }
 }
