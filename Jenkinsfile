@@ -13,7 +13,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                dir("/home/ubuntu/Jenkins/CICD/recipes") {
+                dir("/home/ubuntu/Jenkins/CICD/recipes/") {
                 sh 'mvn -Dmaven.test.failure.ignore=true -U clean install'
                 }
                
@@ -22,7 +22,7 @@ pipeline {
        
  stage ('Deploy') {
             steps {
-                dir("/home/ubuntu/Jenkins/CICD/recipes") {
+                dir("/home/ubuntu/Jenkins/CICD/recipes/") {
                 sh 'mvn spring-boot:run'
                 }
                
